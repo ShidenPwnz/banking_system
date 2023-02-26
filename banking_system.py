@@ -54,7 +54,6 @@ def valid_password(password, username=None):
     return True
 
 
-
 def import_and_create_accounts(filename):
     user_accounts = {}
     log_in = {}
@@ -69,7 +68,6 @@ def import_and_create_accounts(filename):
                 continue
     print(f"user created: {user_accounts}")
     return user_accounts, log_in
-
 
 
 def login(user_accounts, log_in, username, password):
@@ -135,7 +133,6 @@ def change_password(user_accounts, log_in, username, old_password, new_password)
     return True
 
 
-
 def delete_account(user_accounts, log_in, bank, username, password):
     if username not in user_accounts:
         print("Delete account failed, username does not exist")
@@ -154,8 +151,6 @@ def delete_account(user_accounts, log_in, bank, username, password):
     del bank[username]
     print("Account deleted successfully")
     return True
-
-
 
 
 def main():
@@ -234,6 +229,10 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
+
 
 
 
