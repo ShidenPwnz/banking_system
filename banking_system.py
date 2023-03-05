@@ -115,42 +115,36 @@ def transfer(bank, log_in, userA, userB, amount):
     return True
 
 
-def change_password(user_accounts, log_in, username, old_password, new_password):
-    if username not in user_accounts:
-        print("Password change failed, user not found")
+def change_password(user_accounts, log_in, user_name, old_password, new_password):
+    if user_name not in user_accounts:
+        print("User not found")
         return False
-    if not log_in.get(username, False):
-        print("Password change failed, not logged in")
+    if not log_in[user_name]:
+        print("User not logged in")
         return False
-    if user_accounts[username] != old_password:
-        print("Password change failed, old password incorrect")
+    if user_accounts[user_name] != old_password:
+        print("Old password incorrect")
         return False
-    if not valid_password(new_password, username):
-        print("Password change failed, invalid new password")
+    if len(new_password) < 6:
+        print("New password is too short")
         return False
-    user_accounts[username] = new_password
-    print("Password change successful")
+    user_accounts[user_name] = new_password
+    print("Password changed successfully")
     return True
 
 
 def delete_account(user_accounts, log_in, bank, username, password):
     if username not in user_accounts:
-        print("Delete account failed, username does not exist")
         return False
-
-    if user_accounts[username] != password:
-        print("Delete account failed, incorrect password")
+    elif password != user_accounts[username]:
         return False
-
-    if username not in log_in:
-        print("Delete account failed, not logged in")
+    elif not log_in.get(username, False):
         return False
-
-    del user_accounts[username]
-    del log_in[username]
-    del bank[username]
-    print("Account deleted successfully")
-    return True
+    else:
+        del user_accounts[username]
+        del log_in[username]
+        del bank[username]
+        return True
 
 
 def main():
